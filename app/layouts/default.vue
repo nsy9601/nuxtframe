@@ -1,53 +1,43 @@
 <script setup lang="ts">
-// import { useColorMode } from '@nuxtjs/color-mode';
 import Sidebar from '~/components/layout/Sidebar.vue';
 import Navbar from '~/components/layout/Navbar.vue';
 
-// 侧边栏折叠状态（本地存储缓存）
-// const isSidebarCollapsed = ref(
-//   localStorage.getItem('sidebarCollapsed') === 'true'
-// );
-// useCookie 在服务端和客户端都可用
+// 侧边栏折叠状态（使用useCookie持久化）
 const isSidebarCollapsed = useCookie('sidebarCollapsed', {
   default: () => false,
   watch: true
 });
 
-// 监听折叠状态变化，同步到本地存储
-watch(isSidebarCollapsed, (val) => {
-// 只有在浏览器环境下才操作 localStorage
-  if (import.meta.client) {
-    localStorage.setItem('sidebarCollapsed', String(val));
-  }
-});
-
 // 颜色模式（关联主题）
 const { colorMode } = useColorMode();
 
-// 当前主题（结合 colorMode 和自定义主题）
-// const currentTheme = computed(() => {
-//   const storedTheme = localStorage.getItem('appTheme') || 'blue';
-//   return colorMode.value === 'dark' ? 'dark' : storedTheme;
-// });
-// 1. 定义一个响应式的 ref
-const currentTheme = ref('blue');
-
-// 2. 挂载后初始化
-onMounted(() => {
-  if (import.meta.client) {
-    const storedTheme = localStorage.getItem('appTheme') || 'blue';
-    currentTheme.value = colorMode.value === 'dark' ? 'dark' : storedTheme;
-  }
+// 主题设置（使用useCookie持久化）
+const appTheme = useCookie('appTheme', { 
+  default: () => 'blue',
+  watch: true
 });
 
-// 3. 监听 colorMode 的变化来同步主题
+// 当前主题状态
+const currentTheme = ref('blue');
+
+// 在客户端挂载时设置主题
+onMounted(() => {
+  currentTheme.value = colorMode.value === 'dark' ? 'dark' : appTheme.value;
+});
+
+// 监听colorMode变化
 watch(() => colorMode.value, (newMode) => {
   if (newMode === 'dark') {
     currentTheme.value = 'dark';
   } else {
-    if (import.meta.client) {
-      currentTheme.value = localStorage.getItem('appTheme') || 'blue';
-    }
+    currentTheme.value = appTheme.value;
+  }
+});
+
+// 监听appTheme变化
+watch(appTheme, (newTheme) => {
+  if (colorMode.value !== 'dark') {
+    currentTheme.value = newTheme;
   }
 });
 

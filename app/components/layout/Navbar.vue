@@ -11,17 +11,17 @@ defineEmits(['toggle'])
 // 颜色模式
 const { colorMode } = useColorMode();
 
-// 当前主题（从本地存储获取）
-const currentTheme = ref('blue');
-if (import.meta.client) {
-  currentTheme.value = localStorage.getItem('appTheme');
-}
+// 使用useCookie管理主题设置，替代localStorage
+const appTheme = useCookie('appTheme', { default: () => 'blue' });
 
+// 当前主题（从cookie获取）
+const currentTheme = ref(appTheme.value);
 
 // 主题变更回调
 const handleThemeChange = (theme: string) => {
   currentTheme.value = theme;
-  localStorage.setItem('appTheme', theme);
+  appTheme.value = theme;  // 使用useCookie替代localStorage
+  
   // 切换主题时同步颜色模式（暗色模式单独处理）
   if (theme === 'dark') {
     colorMode.value = 'dark';

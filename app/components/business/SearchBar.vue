@@ -39,14 +39,17 @@ const searchFields = computed(() => {
 // 默认显示字段数（协议约定默认3）
 const defaultShowCount = computed(() => props.uiConfig.global.searchDefaultCount || 3);
 
-// 展开状态（本地存储缓存）
-const isExpanded = ref(
-  localStorage.getItem(`search_expanded_${props.uiConfig.model}`) === 'true'
-);
+// 使用useCookie管理搜索展开状态，替代localStorage
+const searchExpandedCookie = useCookie(`search_expanded_${props.uiConfig.model}`, {
+  default: () => false
+});
 
-// 监听展开状态变化，同步到本地存储
+// 展开状态（从cookie获取）
+const isExpanded = ref(searchExpandedCookie.value);
+
+// 监听展开状态变化，同步到cookie
 watch(isExpanded, (val) => {
-  localStorage.setItem(`search_expanded_${props.uiConfig.model}`, String(val));
+  searchExpandedCookie.value = val;
 });
 
 // 可见的搜索字段
