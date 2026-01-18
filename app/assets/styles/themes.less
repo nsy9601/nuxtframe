@@ -1,0 +1,239 @@
+// 导入全局变量
+@import "./variables.less";
+
+// 主题通用样式
+.theme-container {
+  transition: background-color @transition-normal, color @transition-normal;
+  min-height: 100vh;
+}
+
+// 1. 蓝色专业主题（默认）
+.theme-blue {
+  --color-primary: #165DFF;
+  --color-primary-light: #E8F3FF;
+  --color-primary-dark: #0E42D2;
+  --color-secondary: #F0F5FF;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F9FC;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 2. 紫色科技主题
+.theme-purple {
+  --color-primary: #7B61FF;
+  --color-primary-light: #F3F0FF;
+  --color-primary-dark: #6247CC;
+  --color-secondary: #F9F7FF;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F5FF;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 3. 绿色生态主题
+.theme-green {
+  --color-primary: #00B42A;
+  --color-primary-light: #E6FFFA;
+  --color-primary-dark: #009120;
+  --color-secondary: #F0FFF4;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7FFF9;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 4. 橙色活力主题
+.theme-orange {
+  --color-primary: #FF7D00;
+  --color-primary-light: #FFF7E6;
+  --color-primary-dark: #E06A00;
+  --color-secondary: #FFF9F0;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #FFFBF5;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 5. 红色警示主题
+.theme-red {
+  --color-primary: #F53F3F;
+  --color-primary-light: #FFEEEE;
+  --color-primary-dark: #D93030;
+  --color-secondary: #FFF0F0;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #FFFBFB;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 6. 暗色模式主题
+.theme-dark {
+  --color-primary: #1D2129;
+  --color-primary-light: #2E3440;
+  --color-primary-dark: #0F1117;
+  --color-secondary: #2E3440;
+  --color-background: #121212;
+  --color-background-secondary: #1E1E1E;
+  --color-text-primary: #F0F0F0;
+  --color-text-secondary: #C0C0C0;
+  --color-text-placeholder: #888888;
+  --color-border: #333333;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 修复：直接定义根元素变量，不使用 @extend
+:root {
+  --color-primary: #165DFF;
+  --color-primary-light: #E8F3FF;
+  --color-primary-dark: #0E42D2;
+  --color-secondary: #F0F5FF;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F9FC;
+  --color-text-primary: #1D2129;
+  --color-text-secondary: #4E5969;
+  --color-text-placeholder: #86909C;
+  --color-border: #E5E6EB;
+  --color-success: #00B42A;
+  --color-warning: #FF7D00;
+  --color-danger: #F53F3F;
+  --color-info: #86909C;
+}
+
+// 主题切换时通过类名覆盖变量
+.theme-purple {
+  --color-primary: #7B61FF;
+  --color-primary-light: #F3F0FF;
+  --color-primary-dark: #6247CC;
+  --color-secondary: #F9F7FF;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7F5FF;
+}
+
+.theme-green {
+  --color-primary: #00B42A;
+  --color-primary-light: #E6FFFA;
+  --color-primary-dark: #009120;
+  --color-secondary: #F0FFF4;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7FFF9;
+}
+
+.theme-orange {
+  --color-primary: #FF7D00;
+  --color-primary-light: #FFF7E6;
+  --color-primary-dark: #E06A00;
+  --color-secondary: #FFF9F0;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #FFFBF5;
+}
+
+.theme-red {
+  --color-primary: #F53F3F;
+  --color-primary-light: #FFEEEE;
+  --color-primary-dark: #D93030;
+  --color-secondary: #FFF0F0;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #FFFBFB;
+}
+
+.theme-cyan {
+  --color-primary: #00C48C;
+  --color-primary-light: #E6FFFA;
+  --color-primary-dark: #00A870;
+  --color-secondary: #F0FFF4;
+  --color-background: #FFFFFF;
+  --color-background-secondary: #F7FFF9;
+}
+
+.dark {
+  --color-primary: #1D2129;
+  --color-primary-light: #2E3440;
+  --color-primary-dark: #0F1117;
+  --color-secondary: #2E3440;
+  --color-background: #121212;
+  --color-background-secondary: #1E1E1E;
+  --color-text-primary: #F0F0F0;
+  --color-text-secondary: #C0C0C0;
+  --color-text-placeholder: #888888;
+  --color-border: #333333;
+}
+
+@layer base {
+  :root {
+    --tw-primary: var(--color-primary);
+    --tw-primary-light: var(--color-primary-light);
+    --tw-primary-dark: var(--color-primary-dark);
+    --tw-background: var(--color-background);
+    --tw-background-secondary: var(--color-background-secondary);
+    --tw-text-primary: var(--color-text-primary);
+    --tw-text-secondary: var(--color-text-secondary);
+    --tw-border: var(--color-border);
+  }
+
+  body {
+    background-color: var(--tw-background);
+    color: var(--tw-text-primary);
+    font-size: @base-font-size;
+    line-height: @base-line-height;
+  }
+}
+
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+
+  .theme-transition {
+    transition: all @transition-normal;
+  }
+
+  .sidebar-width {
+    width: @sidebar-width;
+  }
+
+  .sidebar-collapsed-width {
+    width: @sidebar-collapsed-width;
+  }
+
+  .header-height {
+    height: @header-height;
+  }
+
+  .content-padding {
+    padding: @content-padding;
+  }
+}
